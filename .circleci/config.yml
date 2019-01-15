@@ -1,13 +1,15 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: debian:stretch
+  build-dotnet:
+    docker: 
+      - image: microsoft/aspnetcore-build
     steps:
       - checkout
-      - run:
-          name: Greeting
-          command: echo Hello, world.
-      - run:
-          name: Print the Current Time
-          command: date
+      - run: cd dotnet && dotnet build
+      - run: cd dotnet && dotnet test
+
+workflows:
+  version: 2
+  build-n-test:
+    jobs:
+      - build-dotnet
