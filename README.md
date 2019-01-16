@@ -5,3 +5,5 @@
 ## Supported Languages
 
 - .Net Core
+- JavaScript
+
