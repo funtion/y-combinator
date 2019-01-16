@@ -7,9 +7,28 @@ jobs:
       - checkout
       - run: cd dotnet && dotnet build
       - run: cd dotnet && dotnet test
+  build-javascript:
+    docker:
+      - image: circleci/node
+      - image: node
+    steps:
+      - checkout
+      - run: sudo npm install -g npm@latest
+      - run: node -v
+      - run: npm -v
+      - restore_cache: # special step to restore the dependency cache
+          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+          key: dependency-cache-{{ checksum "./javascript/package.json" }}
+      - run: cd javascript && npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "./javascript/package.json" }}
+          paths:
+            - ./node_modules
+      - run: cd javascript && npm test
 
 workflows:
   version: 2
   build-n-test:
     jobs:
       - build-dotnet
+      - build-javascript

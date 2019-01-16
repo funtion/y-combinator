@@ -1,0 +1,19 @@
+{
+  "name": "ycombinator",
+  "version": "1.0.0",
+  "description": "The Y Combinator",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/funtion/y-combinator"
+  },
+  "author": "funtion",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
+}
