@@ -25,6 +25,12 @@ jobs:
           paths:
             - ./node_modules
       - run: cd javascript && npm test
+  build-python:
+    docker:
+      - image: circleci/python
+    steps:
+      - checkout
+      - run: cd python && python test.py
 
 workflows:
   version: 2
@@ -32,3 +38,4 @@ workflows:
     jobs:
       - build-dotnet
       - build-javascript
+      - build-python
