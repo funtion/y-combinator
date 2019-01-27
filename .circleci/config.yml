@@ -30,7 +30,7 @@ jobs:
       - image: circleci/python
     steps:
       - checkout
-      - run cd python && python test.py
+      - run: cd python && python test.py
 
 workflows:
   version: 2
